@@ -3,9 +3,9 @@ import "./Footer.css";
 function Footer() {
   return (
     <>
-      <div className="footer">
-        <p>This is a footer</p>
-      </div>
+      <footer className="footer">
+        <p>©SaujalKarki</p>
+      </footer>
     </>
   );
 }
