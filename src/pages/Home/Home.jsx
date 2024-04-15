@@ -8,8 +8,12 @@ function Home() {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-    const blogDatas = await axios.get("http://localhost:3000/readBlog");
-    setBlogs(blogDatas.data.blogs);
+    try {
+      const blogDatas = await axios.get("http://localhost:3000/readBlog");
+      setBlogs(blogDatas.data.blogs);
+    } catch (err) {
+      alert("Something is Wrong");
+    }
   };
 
   useEffect(() => {
