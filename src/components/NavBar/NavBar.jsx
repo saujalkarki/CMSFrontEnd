@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../NavBar/NavBar.css";
 
 function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar">
       <ul>
@@ -17,7 +20,9 @@ function NavBar() {
           <a href="#">Contact</a>
         </li>
       </ul>
-      <button className="createBlog">Create Blog</button>
+      <button className="createBlog">
+        <a onClick={() => navigate("/createBlog")}>Create Blog</a>
+      </button>
     </nav>
   );
 }

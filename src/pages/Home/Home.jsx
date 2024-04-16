@@ -9,10 +9,10 @@ function Home() {
 
   const fetchBlogs = async () => {
     try {
-      const blogDatas = await axios.get("http://localhost:3000/readBlog");
-      setBlogs(blogDatas.data.blogs);
-    } catch (err) {
-      alert("Something is Wrong");
+      const blogs = await axios.get("http://localhost:3000/readBlog");
+      setBlogs(blogs.data.blogs);
+    } catch (error) {
+      alert("Error found");
     }
   };
 
