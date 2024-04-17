@@ -17,7 +17,7 @@ function CreateBlog() {
       subTitle,
       description,
     });
-
+    f;
     console.log(response);
 
     if (response.status == 201) {
