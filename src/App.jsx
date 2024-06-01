@@ -1,16 +1,17 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CreateBlog from "./pages/CreateBlog/CreateBlog";
+import { Home, CreateBlog, SingleRead } from "./pages/index";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/createBlog" element={<CreateBlog />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/createblog" element={<CreateBlog />} />
+          <Route path="/blog/:id" element={<SingleRead />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
