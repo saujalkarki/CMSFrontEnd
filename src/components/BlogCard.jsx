@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 export function BlogCard({ blog }) {
   const shortDescription = blog.description.split(" ").slice(0, 10);
-  console.log(blog._id);
 
   return (
     <Link to={`/blog/${blog._id}`}>
