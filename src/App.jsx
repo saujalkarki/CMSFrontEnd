@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, CreateBlog, SingleRead, UpdateBlog } from "./pages/index";
+import {
+  Home,
+  CreateBlog,
+  SingleRead,
+  UpdateBlog,
+  PageNotFound,
+} from "./pages/index";
 
 function App() {
   return (
@@ -10,6 +16,7 @@ function App() {
           <Route path="/createblog" element={<CreateBlog />} />
           <Route path="/blog/:id" element={<SingleRead />} />
           <Route path="/updateblog/:id" element={<UpdateBlog />} />
+          <Route path="/error" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>

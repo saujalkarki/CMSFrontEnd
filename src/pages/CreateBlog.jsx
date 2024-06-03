@@ -1,6 +1,7 @@
 import { NavBar, Form, Footer } from "../components";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function CreateBlog() {
   const navigate = useNavigate();
@@ -10,13 +11,23 @@ export function CreateBlog() {
 
     const formData = new FormData(e.currentTarget);
 
-    const filePosted = await axios.post("http://localhost:3000/blog", formData);
+    try {
+      const filePosted = await axios.post(
+        "http://localhost:3000/blog",
+        formData
+      );
 
-    if (filePosted.status === 200) {
-      navigate("/");
-      alert(filePosted.data.message);
-    } else {
-      alert("Something went Wrong");
+      console.log(filePosted);
+      if (filePosted.status === 200) {
+        navigate("/");
+        toast.success(filePosted.data.message);
+        toast.success(filePosted.data.message);
+        toast.success(filePosted.data.message);
+        toast.success(filePosted.data.message);
+      }
+    } catch (err) {
+      navigate("/error");
+      toast.error(err.response.data.message);
     }
   };
 

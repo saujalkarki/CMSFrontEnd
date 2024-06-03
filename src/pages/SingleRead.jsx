@@ -2,6 +2,7 @@ import { NavBar, Footer } from "../components";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export function SingleRead() {
   const navigate = useNavigate();
@@ -11,19 +12,31 @@ export function SingleRead() {
   const [blog, setBlog] = useState({});
 
   const fetchBlog = async () => {
-    const blog = await axios.get(`http://localhost:3000/blog/${id}`);
-
-    if (blog.status === 200) {
+    try {
+      const blog = await axios.get(`http://localhost:3000/blog/${id}`);
       setBlog(blog.data.blogExist);
+    } catch (err) {
+      if (err.message === "Network Error") {
+        navigate("/error");
+        toast.error(err.message);
+      } else {
+        navigate("/");
+        toast.error(err.response.data.message);
+      }
     }
   };
 
   const deleteBlog = async () => {
-    const deleteBlog = await axios.delete(`http://localhost:3000/blog/${id}`);
-
-    if (deleteBlog.status === 200) {
-      navigate("/");
-      alert(deleteBlog.data.message);
+    try {
+      const deleteBlog = await axios.delete(`http://localhost:3000/blog/${id}`);
+      if (deleteBlog.status === 200) {
+        navigate("/");
+        toast.success(deleteBlog.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      navigate("/error");
+      toast.error(err.response.data.message);
     }
   };
 
